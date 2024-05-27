@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import * as process from "node:process";
 
 declare global {
   var prisma: PrismaClient;

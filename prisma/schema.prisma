@@ -25,3 +25,64 @@ model Session {
   accessToken String
   userId      BigInt?
 }
+
+model ShopifyStore {
+    id             Int     @id @default(autoincrement())
+    url            String
+    token          String
+    created_at     DateTime @default(now())
+    updated_at     DateTime @updatedAt
+
+
+    //one-to-many
+    orders         ShopifyOrder[]
+
+    @@map("shopify_stores")
+}
+
+model ShopifyOrder {
+    id                    Int     @id @default(autoincrement())
+    order_id              String  @unique
+    order_name            String
+    created_at            DateTime   @default(now())
+    updated_at            DateTime   @updatedAt
+
+    //one-to-many
+    store                 ShopifyStore @relation(fields: [store_id], references: [id])
+    store_id              Int
+
+    refunds               Refund[]
+
+    //one-to-many
+    customer               Customer @relation(fields: [customer_id], references: [id])
+    customer_id            Int
+
+
+    @@map("shopify_orders")
+}
+
+model Refund {
+    id                    Int     @id @default(autoincrement())
+    refund_id              String  @unique
+    created_at            DateTime   @default(now())
+    updated_at            DateTime   @updatedAt
+
+    //one-to-many
+    order                ShopifyOrder @relation(fields: [order_id], references: [id])
+    order_id             Int
+
+    @@map("refunds")
+}
+
+model Customer {
+    id                    Int     @id @default(autoincrement())
+    email                 String  @unique
+    firstName             String
+    lastName              String
+    created_at            DateTime   @default(now())
+    updated_at            DateTime   @updatedAt
+
+    orders  ShopifyOrder[]
+
+    @@map("customers")
+}

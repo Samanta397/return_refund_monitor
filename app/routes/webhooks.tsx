@@ -1,10 +1,12 @@
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 import db from "../db.server";
+import {bulkOperation} from "~/routes/webhookProcess/bulkOperation";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const { topic, shop, session, admin } = await authenticate.webhook(request);
+  const { topic, shop, session, admin, payload, webhookId } = await authenticate.webhook(request);
 
+  console.log('WEBOOOKS')
   if (!admin) {
     // The admin context isn't returned if the webhook fired after a shop was uninstalled.
     throw new Response();
@@ -16,6 +18,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         await db.session.deleteMany({ where: { shop } });
       }
 
+      break;
+    case "BULK_OPERATIONS_FINISH":
+      console.log('BULK_OPERATIONS_FINISH', webhookId)
+      await bulkOperation(shop, payload, admin)
       break;
     case "CUSTOMERS_DATA_REQUEST":
     case "CUSTOMERS_REDACT":

@@ -3,23 +3,23 @@
 client_id = "36a7979942bccad6d97720c96b04d0f3"
 name = "return-refund-monitor"
 handle = "return-refund-monitor"
-application_url = "https://audi-movie-elephant-promise.trycloudflare.com"
+application_url = "https://relevant-sciences-tied-drivers.trycloudflare.com"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "quickstart-86b7517e.myshopify.com"
+dev_store_url = "return-refund-test-store.myshopify.com"
 include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products"
+scopes = "customer_read_customers,customer_read_orders,read_customers,read_orders,unauthenticated_read_checkouts,write_orders,write_products"
 
 [auth]
 redirect_urls = [
-  "https://audi-movie-elephant-promise.trycloudflare.com/auth/callback",
-  "https://audi-movie-elephant-promise.trycloudflare.com/auth/shopify/callback",
-  "https://audi-movie-elephant-promise.trycloudflare.com/api/auth/callback"
+  "https://relevant-sciences-tied-drivers.trycloudflare.com/auth/callback",
+  "https://relevant-sciences-tied-drivers.trycloudflare.com/auth/shopify/callback",
+  "https://relevant-sciences-tied-drivers.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
