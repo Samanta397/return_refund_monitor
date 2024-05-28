@@ -13,7 +13,14 @@ export const bulkOperationsCreate = async (session, admin) => {
                 node {
                   id
                   name
-                
+                  refunds(first: 10) {
+                    id
+                  }
+                  customer {
+                    email
+                    firstName
+                    lastName
+                  }
                 }
               }
             }
@@ -31,7 +38,7 @@ export const bulkOperationsCreate = async (session, admin) => {
   }
       }`,)
 
-    console.log('BULK', response)
+    // console.log('BULK', response)
   } catch (error) {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>>', error)
   }

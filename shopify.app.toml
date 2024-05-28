@@ -3,7 +3,7 @@
 client_id = "36a7979942bccad6d97720c96b04d0f3"
 name = "return-refund-monitor"
 handle = "return-refund-monitor"
-application_url = "https://relevant-sciences-tied-drivers.trycloudflare.com"
+application_url = "https://argued-detail-boxing-promotes.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "customer_read_customers,customer_read_orders,read_customers,read_order
 
 [auth]
 redirect_urls = [
-  "https://relevant-sciences-tied-drivers.trycloudflare.com/auth/callback",
-  "https://relevant-sciences-tied-drivers.trycloudflare.com/auth/shopify/callback",
-  "https://relevant-sciences-tied-drivers.trycloudflare.com/api/auth/callback"
+  "https://argued-detail-boxing-promotes.trycloudflare.com/auth/callback",
+  "https://argued-detail-boxing-promotes.trycloudflare.com/auth/shopify/callback",
+  "https://argued-detail-boxing-promotes.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
