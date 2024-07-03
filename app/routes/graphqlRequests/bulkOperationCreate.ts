@@ -1,7 +1,6 @@
 import shopify, {authenticate} from "~/shopify.server";
 
 export const bulkOperationsCreate = async (session, admin) => {
-
   try {
     const response = await admin.graphql(`#graphql
       mutation bulkOperationRunQuery {
@@ -13,8 +12,18 @@ export const bulkOperationsCreate = async (session, admin) => {
                 node {
                   id
                   name
-                  refunds(first: 10) {
+                   totalPriceSet {
+                    shopMoney {
+                      amount
+                    }
+                   }
+                  refunds {
                     id
+                    totalRefundedSet {
+                      shopMoney {
+                        amount
+                      }
+                    }
                   }
                   customer {
                     email
@@ -38,7 +47,6 @@ export const bulkOperationsCreate = async (session, admin) => {
   }
       }`,)
 
-    // console.log('BULK', response)
   } catch (error) {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>>', error)
   }

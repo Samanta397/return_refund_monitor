@@ -16,6 +16,7 @@ CREATE TABLE "shopify_orders" (
     "order_name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
+    "cost" DOUBLE PRECISION NOT NULL,
     "store_id" INTEGER NOT NULL,
     "customer_id" INTEGER NOT NULL,
 
@@ -26,6 +27,7 @@ CREATE TABLE "shopify_orders" (
 CREATE TABLE "refunds" (
     "id" SERIAL NOT NULL,
     "refund_id" TEXT NOT NULL,
+    "cost" DOUBLE PRECISION NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
     "order_id" INTEGER NOT NULL,

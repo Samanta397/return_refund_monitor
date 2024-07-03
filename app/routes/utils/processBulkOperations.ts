@@ -29,10 +29,10 @@ export const processBulkOperations = async (fileName, shop) => {
         update: customerData
       })
 
-      // console.log(createdCustomer)
       const orderData = {
         order_id: order.id,
         order_name: order.name,
+        cost: Number(order.totalPriceSet.shopMoney.amount),
         store: {
           connect: store
         },
@@ -52,6 +52,7 @@ export const processBulkOperations = async (fileName, shop) => {
       for (const refund of order.refunds) {
         const refundData = {
           refund_id: refund.id,
+          cost: Number(refund.totalRefundedSet.shopMoney.amount),
           order: {
             connect: createdOrder
           }
@@ -67,7 +68,7 @@ export const processBulkOperations = async (fileName, shop) => {
       }
     }
 
-
+    // await fsPromises.rm(fileName)
   } catch(error) {
     await fsPromises.rm(fileName)
     throw error

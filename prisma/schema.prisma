@@ -46,6 +46,7 @@ model ShopifyOrder {
     order_name            String
     created_at            DateTime   @default(now())
     updated_at            DateTime   @updatedAt
+    cost                  Float
 
     //one-to-many
     store                 ShopifyStore @relation(fields: [store_id], references: [id])
@@ -63,7 +64,8 @@ model ShopifyOrder {
 
 model Refund {
     id                    Int     @id @default(autoincrement())
-    refund_id              String  @unique
+    refund_id             String  @unique
+    cost                  Float
     created_at            DateTime   @default(now())
     updated_at            DateTime   @updatedAt
 

@@ -23,6 +23,14 @@ const shopify = shopifyApp({
   distribution: AppDistribution.AppStore,
   restResources,
   webhooks: {
+    ORDERS_CREATE: {
+      deliveryMethod: DeliveryMethod.Http,
+      callbackUrl: "/webhooks",
+    },
+    REFUNDS_CREATE: {
+      deliveryMethod: DeliveryMethod.Http,
+      callbackUrl: "/webhooks",
+    },
     BULK_OPERATIONS_FINISH: {
       deliveryMethod: DeliveryMethod.Http,
       callbackUrl: "/webhooks",
@@ -34,7 +42,7 @@ const shopify = shopifyApp({
   },
   hooks: {
     afterAuth: async ({ session, admin }) => {
-      shopify.registerWebhooks({ session });
+      await shopify.registerWebhooks({ session });
       await saveStoreData(session)
       await bulkOperationsCreate(session, admin)
     },
